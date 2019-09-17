@@ -19,9 +19,9 @@ namespace phone_directory
             + "+1-099-500-8000 <Peter Crush> Labrador Bd.\n +1-931-512-4855 <William Saurin> Bison Street CQ-23071\n"
             + "<P Salinge> Main Street, +1-098-512-2222, Denve\n"+ "<P Salinge> Main Street, +1-098-512-2222, Denve\n";
             // string dr = "/+1-541-754-3010 156 Alphand_St. <J Steeve>\n";
-            Phone(dr, "+1-541-754-3010");
+            // Phone(dr, "+1-541-754-3010");
             // string dr = "<Anastasia> +48-421-674-8974 Via Quirinal Roma\n";
-            // Phone(dr, "+48-421-674-8974");
+            Phone(dr, "+48-421-674-8974");
         }
 
         static string Phone(string strng, string num)
@@ -29,7 +29,7 @@ namespace phone_directory
             string[] phone = strng.Split(new Char[] {'\n'});
             string item = Array.Find(phone, x => x.Contains(num));
             Console.WriteLine(item);
-            int found = num.IndexOf(num);
+            int found = strng.IndexOf(num);
             string result;
             if (found != 1)
             {
@@ -42,23 +42,23 @@ namespace phone_directory
             string[] words = strng.Split(new Char[] { '/', '$', '!', '\n', '?', '*', '.' });
 
 
-            int namenum = strng.IndexOf("<");
+            int namenum = item.IndexOf("<");
 
-            int startphonenum = strng.IndexOf(num);
-            Console.WriteLine(startphonenum);
+            int startphonenum = item.IndexOf(num);
+            // Console.WriteLine(startphonenum);
 
             int endphonenum = num.Length + 1;
-            Console.WriteLine(endphonenum);
+            // Console.WriteLine(endphonenum);
 
             // string name = Array.Find<string>(words, x => x.StartsWith("<") | x.EndsWith(">"));
-            int startname = strng.IndexOf("<");
-            int endName = strng.IndexOf(">");
-            string name = strng.Substring(startname + 1, (endName - 1) - startname);
+            int startname = item.IndexOf("<");
+            int endName = item.IndexOf(">");
+            string name = item.Substring(startname + 1, (endName - 1) - startname);
             // string person = name.Trim(new Char[] { ' ', '<', '>' });
-            Console.WriteLine(name);
+            // Console.WriteLine(name);
 
-            string noname = strng.Replace($"<{name}>", String.Empty).Replace(num, String.Empty).Trim();
-            Console.WriteLine(noname);
+            string noname = item.Replace($"<{name}>", String.Empty).Replace(num, String.Empty).Trim();
+            // Console.WriteLine(noname);
 
 
 
