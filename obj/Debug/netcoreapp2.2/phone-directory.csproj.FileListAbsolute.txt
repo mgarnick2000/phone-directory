@@ -1,0 +1,11 @@
+/Users/markgarnick/projects/phone-directory/bin/Debug/netcoreapp2.2/phone-directory.deps.json
+/Users/markgarnick/projects/phone-directory/bin/Debug/netcoreapp2.2/phone-directory.runtimeconfig.json
+/Users/markgarnick/projects/phone-directory/bin/Debug/netcoreapp2.2/phone-directory.runtimeconfig.dev.json
+/Users/markgarnick/projects/phone-directory/bin/Debug/netcoreapp2.2/phone-directory.dll
+/Users/markgarnick/projects/phone-directory/bin/Debug/netcoreapp2.2/phone-directory.pdb
+/Users/markgarnick/projects/phone-directory/obj/Debug/netcoreapp2.2/phone-directory.csprojAssemblyReference.cache
+/Users/markgarnick/projects/phone-directory/obj/Debug/netcoreapp2.2/phone-directory.csproj.CoreCompileInputs.cache
+/Users/markgarnick/projects/phone-directory/obj/Debug/netcoreapp2.2/phone-directory.AssemblyInfoInputs.cache
+/Users/markgarnick/projects/phone-directory/obj/Debug/netcoreapp2.2/phone-directory.AssemblyInfo.cs
+/Users/markgarnick/projects/phone-directory/obj/Debug/netcoreapp2.2/phone-directory.dll
+/Users/markgarnick/projects/phone-directory/obj/Debug/netcoreapp2.2/phone-directory.pdb
