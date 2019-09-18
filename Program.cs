@@ -19,9 +19,10 @@ namespace phone_directory
             + "+1-099-500-8000 <Peter Crush> Labrador Bd.\n +1-931-512-4855 <William Saurin> Bison Street CQ-23071\n"
             + "<P Salinge> Main Street, +1-098-512-2222, Denve\n" + "<P Salinge> Main Street, +1-098-512-2222, Denve\n";
             // string dr = "/+1-541-754-3010 156 Alphand_St. <J Steeve>\n";
-            // Phone(dr, "+1-541-754-3010");
+            Phone(dr, "+1-541-754-3010");
             // string dr = "<Anastasia> +48-421-674-8974 Via Quirinal Roma\n";
-            Phone(dr, "+48-421-674-8974");
+            // Phone(dr, "+1-908-512-2222");
+            // Phone(dr, "+48-421-674-8974");
         }
 
         static string Phone(string strng, string num)
@@ -31,7 +32,7 @@ namespace phone_directory
             Console.WriteLine(item);
             int found = strng.IndexOf(num);
             string result;
-            if (found != 1)
+            if (found != -1)
             {
                 result = "Error => Too many people: {num}";
             }
@@ -45,7 +46,6 @@ namespace phone_directory
             int namenum = item.IndexOf("<");
 
             int startphonenum = item.IndexOf(num);
-            // Console.WriteLine(startphonenum);
 
             int endphonenum = num.Length + 1;
             // Console.WriteLine(endphonenum);
@@ -53,22 +53,16 @@ namespace phone_directory
             // string name = Array.Find<string>(words, x => x.StartsWith("<") | x.EndsWith(">"));
             int startname = item.IndexOf("<");
             int endName = item.IndexOf(">");
-            string name = item.Substring(startname + 1, (endName - 1) - startname);
+            string name = item.Substring(startname, endName - startname).Trim(new Char[] { '<', '>' });
             // string person = name.Trim(new Char[] { ' ', '<', '>' });
             // Console.WriteLine(name);
 
-            string noname = item.Replace($"<{name}>", String.Empty).Replace(num, String.Empty).Trim(new Char[] { '/',  ' ' });
-            // Console.WriteLine(noname);
-
-
-
-
-
+            string noname = item.Replace($"<{name}>", String.Empty).Replace(num, String.Empty).Replace(";", "").Replace("  ", " ").Replace("+", "").Replace("*", "").Replace(":", "").Replace(",", "").Replace("_", " ").Replace("!!", "").Trim(new Char[] { '/', ' ', '+' });
             char[] delimiter = { '/', '$', '!', '\n', '?', '*', '.' };
 
             string[] split = strng.Split(delimiter, StringSplitOptions.RemoveEmptyEntries);
-
-            result = $"Phone => {num}, Name => {name}, Address => {noname}";
+            string phoneNum = num.Trim(new Char[] {'+', ' '});
+            result = $"Phone => {phoneNum}, Name => {name}, Address => {noname}";
             Console.WriteLine(result);
             return result;
         }
