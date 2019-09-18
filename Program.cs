@@ -37,8 +37,6 @@ namespace phone_directory
             string item = Array.Find(phone, x => x.Contains(num, comp));
             int found = strng.IndexOf(num);
             string[] dup = Array.FindAll(phone, x => x.Contains(num, comp));
-            // Console.WriteLine(found.Length);
-            Console.WriteLine(found);
             string result;
             if (dup.Length > 1)
             {
@@ -60,14 +58,9 @@ namespace phone_directory
             int startphonenum = item.IndexOf(num);
 
             int endphonenum = num.Length + 1;
-            // Console.WriteLine(endphonenum);
-
-            // string name = Array.Find<string>(words, x => x.StartsWith("<") | x.EndsWith(">"));
             int startname = item.IndexOf("<");
             int endName = item.IndexOf(">");
             string name = item.Substring(startname, endName - startname).Trim(new Char[] { '<', '>' });
-            // string person = name.Trim(new Char[] { ' ', '<', '>' });
-            // Console.WriteLine(name);
 
             string noname = item.Replace($"<{name}>", String.Empty).Replace(num, String.Empty).Replace(";", "").Replace("  ", " ").Replace("+", "").Replace("*", "").Replace(":", "").Replace(",", "").Replace("_", " ").Replace("!!", "").Replace("-", "-").Replace("$", "").Replace("?", "").Replace("!", "").Trim(new Char[] { '/', ' ', '+' });
             string fname = Regex.Replace(noname, @"\s+", " ");
