@@ -18,30 +18,39 @@ namespace phone_directory
             + "<Anastasia> +48-421-674-8974 Via Quirinal Roma\n <P Salinger> Main Street, +1-098-512-2222, Denver\n"
             + "<C Powel> *+19-421-674-8974 Chateau des Fosses Strasbourg F-68000\n <Bernard Deltheil> +1-498-512-2222; Mount Av.  Eldorado\n"
             + "+1-099-500-8000 <Peter Crush> Labrador Bd.\n +1-931-512-4855 <William Saurin> Bison Street CQ-23071\n"
-            + "<P Salinge> Main Street, +1-098-512-2222, Denve\n" + "<P Salinge> Main Street, +1-098-512-2222, Denve\n";
+            + "<P Salinge> Main Street, +1-098-512-2222, Denve\n" + "<P Salinge> Main Street, +1-098-512-2222, Denve\n"
+            + "<Elizabeth Corber> +8-421-674-8974 Some randomplace";
             // string dr = "/+1-541-754-3010 156 Alphand_St. <J Steeve>\n";
-            Phone(dr, "+1-541-754-3010");
+            // Phone(dr, "+1-541-754-3010");
             // string dr = "<Anastasia> +48-421-674-8974 Via Quirinal Roma\n";
             // Phone(dr, "+1-908-512-2222");
             // Phone(dr, "+48-421-674-8974");
             // Phone(dr, "+1-098-512-2222");
-            Phone(dr,"*+19-421-674-8974" );
+            // Phone(dr,"*+19-421-674-8974" );
+            Phone(dr, "+8-421-674-8974");
         }
 
         static string Phone(string strng, string num)
         {
             string[] phone = strng.Split(new Char[] { '\n' });
-            string item = Array.Find(phone, x => x.Contains(num));
-            Console.WriteLine(item);
+            StringComparison comp = StringComparison.Ordinal;
+            string item = Array.Find(phone, x => x.Contains(num, comp));
             int found = strng.IndexOf(num);
+            string[] dup = Array.FindAll(phone, x => x.Contains(num, comp));
+            // Console.WriteLine(found.Length);
+            Console.WriteLine(found);
             string result;
-            if (found != -1)
+            if (dup.Length > 1)
             {
-                result = "Error => Too many people: {num}";
+                string multNum = num.Trim(new Char[] { '+', ' ', '*' });
+                result = $"Error => Too many people: {multNum}";
+                Console.WriteLine(result);
+                return result;
             }
             if (found == -1)
             {
                 result = $"Error => Not found: {num}";
+                return result;
             }
             string[] words = strng.Split(new Char[] { '/', '$', '!', '\n', '?', '*', '.' });
 
@@ -60,7 +69,7 @@ namespace phone_directory
             // string person = name.Trim(new Char[] { ' ', '<', '>' });
             // Console.WriteLine(name);
 
-            string noname = item.Replace($"<{name}>", String.Empty).Replace(num, String.Empty).Replace(";", "").Replace("  ", " ").Replace("+", "").Replace("*", "").Replace(":", "").Replace(",", "").Replace("_", " ").Replace("!!", "").Replace("-", "-").Replace("$", "").Trim(new Char[] { '/', ' ', '+' });
+            string noname = item.Replace($"<{name}>", String.Empty).Replace(num, String.Empty).Replace(";", "").Replace("  ", " ").Replace("+", "").Replace("*", "").Replace(":", "").Replace(",", "").Replace("_", " ").Replace("!!", "").Replace("-", "-").Replace("$", "").Replace("?", "").Replace("!", "").Trim(new Char[] { '/', ' ', '+' });
             string fname = Regex.Replace(noname, @"\s+", " ");
             char[] delimiter = { '/', '$', '!', '\n', '?', '*', '.' };
 
@@ -69,6 +78,7 @@ namespace phone_directory
             result = $"Phone => {phoneNum}, Name => {name}, Address => {fname}";
             Console.WriteLine(result);
             return result;
+
         }
 
     }
