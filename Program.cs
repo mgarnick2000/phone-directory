@@ -17,7 +17,7 @@ namespace phone_directory
             + "<Anastasia> +48-421-674-8974 Via Quirinal Roma\n <P Salinger> Main Street, +1-098-512-2222, Denver\n"
             + "<C Powel> *+19-421-674-8974 Chateau des Fosses Strasbourg F-68000\n <Bernard Deltheil> +1-498-512-2222; Mount Av.  Eldorado\n"
             + "+1-099-500-8000 <Peter Crush> Labrador Bd.\n +1-931-512-4855 <William Saurin> Bison Street CQ-23071\n"
-            + "<P Salinge> Main Street, +1-098-512-2222, Denve\n"+ "<P Salinge> Main Street, +1-098-512-2222, Denve\n";
+            + "<P Salinge> Main Street, +1-098-512-2222, Denve\n" + "<P Salinge> Main Street, +1-098-512-2222, Denve\n";
             // string dr = "/+1-541-754-3010 156 Alphand_St. <J Steeve>\n";
             // Phone(dr, "+1-541-754-3010");
             // string dr = "<Anastasia> +48-421-674-8974 Via Quirinal Roma\n";
@@ -26,7 +26,7 @@ namespace phone_directory
 
         static string Phone(string strng, string num)
         {
-            string[] phone = strng.Split(new Char[] {'\n'});
+            string[] phone = strng.Split(new Char[] { '\n' });
             string item = Array.Find(phone, x => x.Contains(num));
             Console.WriteLine(item);
             int found = strng.IndexOf(num);
@@ -57,7 +57,7 @@ namespace phone_directory
             // string person = name.Trim(new Char[] { ' ', '<', '>' });
             // Console.WriteLine(name);
 
-            string noname = item.Replace($"<{name}>", String.Empty).Replace(num, String.Empty).Trim();
+            string noname = item.Replace($"<{name}>", String.Empty).Replace(num, String.Empty).Trim(new Char[] { '/',  ' ' });
             // Console.WriteLine(noname);
 
 
