@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace phone_directory
 {
@@ -23,6 +24,8 @@ namespace phone_directory
             // string dr = "<Anastasia> +48-421-674-8974 Via Quirinal Roma\n";
             // Phone(dr, "+1-908-512-2222");
             // Phone(dr, "+48-421-674-8974");
+            // Phone(dr, "+1-098-512-2222");
+            Phone(dr,"*+19-421-674-8974" );
         }
 
         static string Phone(string strng, string num)
@@ -57,12 +60,13 @@ namespace phone_directory
             // string person = name.Trim(new Char[] { ' ', '<', '>' });
             // Console.WriteLine(name);
 
-            string noname = item.Replace($"<{name}>", String.Empty).Replace(num, String.Empty).Replace(";", "").Replace("  ", " ").Replace("+", "").Replace("*", "").Replace(":", "").Replace(",", "").Replace("_", " ").Replace("!!", "").Trim(new Char[] { '/', ' ', '+' });
+            string noname = item.Replace($"<{name}>", String.Empty).Replace(num, String.Empty).Replace(";", "").Replace("  ", " ").Replace("+", "").Replace("*", "").Replace(":", "").Replace(",", "").Replace("_", " ").Replace("!!", "").Replace("-", "-").Replace("$", "").Trim(new Char[] { '/', ' ', '+' });
+            string fname = Regex.Replace(noname, @"\s+", " ");
             char[] delimiter = { '/', '$', '!', '\n', '?', '*', '.' };
 
             string[] split = strng.Split(delimiter, StringSplitOptions.RemoveEmptyEntries);
-            string phoneNum = num.Trim(new Char[] {'+', ' '});
-            result = $"Phone => {phoneNum}, Name => {name}, Address => {noname}";
+            string phoneNum = num.Trim(new Char[] { '+', ' ', '*' });
+            result = $"Phone => {phoneNum}, Name => {name}, Address => {fname}";
             Console.WriteLine(result);
             return result;
         }
